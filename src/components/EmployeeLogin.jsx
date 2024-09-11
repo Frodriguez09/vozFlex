@@ -8,7 +8,12 @@ const EmployeeLogin = ({ onValidated}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const q = query(collection(db, 'employees'), where('employeeId','==', employeeNumber));
+
+        let modifiedEmployeeId = employeeNumber;
+        if(modifiedEmployeeId.startsWith('0') && modifiedEmployeeId.endsWith('A')){
+            modifiedEmployeeId = modifiedEmployeeId.slice(1,-1);
+        }
+        const q = query(collection(db, 'employees'), where('employeeId','==', modifiedEmployeeId));
         const querySnapshot = await getDocs(q);
 
         if(!querySnapshot.empty){

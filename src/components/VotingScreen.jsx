@@ -2,8 +2,10 @@ import { useState } from "react";
 import {updateDoc, doc} from 'firebase/firestore';
 import {db} from '../firebase/firebaseConfig';
 
+
 const VotingScreen = ({employeeDoc}) =>{
     const [selectedOption, setSelectedOption] = useState('');
+    
 
     const handleVote = async () =>{
         if(selectedOption){
@@ -15,6 +17,7 @@ const VotingScreen = ({employeeDoc}) =>{
         }else{
             alert('Selecciona una opcion');
         }
+        
     };
 
     return(

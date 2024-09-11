@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { collection, addDoc, getDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, updateDoc, doc } from "firebase/firestore";
 import {db} from '../firebase/firebaseConfig';
 import VotingResults from './VotingResults';
 
@@ -29,15 +29,20 @@ const AdminPanel = () => {
     };
 
     // Close poll
-    const closeVoting = async () =>{
-        const querySnapshot = await getDoc(collection(db, 'employees'));
-        querySnapshot.forEach(async (docSnapshot) => {
-            await updateDoc(doc(db, 'employees', docSnapshot.id), {
+    const closeVoting = async () => {
+        try{
+            const querySnapshot = await getDocs(collection(db, 'employees'));
+
+            const updatePromises = querySnapshot.docs.map((docSnapshot) => updateDoc(doc(db, 'employees', docSnapshot.id),{
                 hasVoted: false,
                 vote: null,
-            });
-        });
+            })
+        );
+        await Promise.all(updatePromises);
         alert('Votacion reiniciada.');
+        }catch (error){
+            console.error('Error al cerrar la votacion: ',error);
+        }
     };
 
     return(
