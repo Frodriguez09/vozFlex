@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+// import '../chartConfig';
 import { collection, getDocs } from "firebase/firestore";
 import {db} from '../firebase/firebaseConfig';
 
 const VotingResults = () =>{
     const [results, setResults] =  useState({
-        option1:0,
+        option1: 0,
         option2: 0
     });
 
@@ -29,7 +30,7 @@ const VotingResults = () =>{
         datasets: [{
             label: 'Votos',
             data: [results.option1, results.option2],
-            backgroundColor: ['rgba(75,192,192,0.2)','rgba(153,102,255,0.2)'],
+            backgroundColor: ['rgba(75,192,192,0.5)','rgba(153,102,255,0.5)'],
             borderColor: ['rgba(75,192,192,1)', 'rgba(153,102,255,1)'],
             borderWidth: 1,
         }

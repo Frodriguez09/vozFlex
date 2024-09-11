@@ -8,7 +8,7 @@ const EmployeeLogin = ({ onValidated}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const q = query(collection(db, 'employees'), where('employeeNumber','==', employeeNumber));
+        const q = query(collection(db, 'employees'), where('employeeId','==', employeeNumber));
         const querySnapshot = await getDocs(q);
 
         if(!querySnapshot.empty){

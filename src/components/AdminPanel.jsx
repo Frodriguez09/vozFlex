@@ -4,17 +4,17 @@ import {db} from '../firebase/firebaseConfig';
 import VotingResults from './VotingResults';
 
 const AdminPanel = () => {
-    const [employeeNumber, setEmployeeNumer ] = useState('');
+    const [employeeId, setEmployeeId ] = useState('');
     const [name, setName] = useState('');
     const [loading, setLoading] = useState('');
 
     // Add employees
     const addEmployees = async () =>{
-        if(employeeNumber && name){
+        if(employeeId && name){
             setLoading(true);
             try{
                 await addDoc(collection(db, 'employees'),{
-                    employeeNumber,
+                    employeeId,
                     name,
                     hasVoted: false,
                 });
@@ -47,8 +47,8 @@ const AdminPanel = () => {
                 <h3>Agregar empleado</h3>
                 <input
                     type="text"
-                    value={employeeNumber}
-                    onChange={(e)=>setEmployeeNumer(e.target.value)}
+                    value={employeeId}
+                    onChange={(e)=>setEmployeeId(e.target.value)}
                     placeholder="Numero de empleado"
                 />
                 <input
