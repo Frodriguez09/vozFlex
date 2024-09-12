@@ -1,10 +1,12 @@
 import { useState } from "react";
 import {updateDoc, doc} from 'firebase/firestore';
 import {db} from '../firebase/firebaseConfig';
+import { useNavigate } from "react-router-dom";
 
 
 const VotingScreen = ({employeeDoc}) =>{
     const [selectedOption, setSelectedOption] = useState('');
+    const navigate = useNavigate();
     
 
     const handleVote = async () =>{
@@ -14,6 +16,8 @@ const VotingScreen = ({employeeDoc}) =>{
                 vote: selectedOption,
             });
             alert('Voto registrado');
+            navigate('/');
+            window.location.reload();
         }else{
             alert('Selecciona una opcion');
         }
