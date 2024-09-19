@@ -4,37 +4,61 @@ import '../chartConfig';
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase/firebaseConfig';
 
+// Función para generar colores aleatorios
+const generateRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
 const VotingResults = () => {
     const [chartData, setChartData] = useState({});
 
     useEffect(() => {
         // Escuchar los resultados en tiempo real
-        const unsubscribe = onSnapshot(collection(db, 'employees'), (snapshot) => {
-            let results = {
-                'Opcion 1': 0,
-                'Opcion 2': 0,
-            };
+        const unsubscribe = onSnapshot(collection(db, 'votingOptions'), (snapshot) => {
+            let results = {};
+            let optionLabels = [];
+            let voteCounts = [];
 
-            // Recorre todos los empleados y cuenta los votos en tiempo real
+            // Recorre todas las opciones de votación y establece los contadores en 0
             snapshot.forEach((doc) => {
-                const vote = doc.data().vote;
-                if (vote) {
-                    results[vote] = (results[vote] || 0) + 1;
-                }
+                const option = doc.data();
+                optionLabels.push(option.name);
+                results[option.name] = 0;
             });
 
-            // Formatea los datos para el gráfico
-            setChartData({
-                labels: ['Opción 1', 'Opción 2'], // Las etiquetas de tus opciones de voto
-                datasets: [
-                    {
-                        label: 'Resultados de la votación',
-                        data: [results['Opcion 1'], results['Opcion 2']], // Los datos de los votos
-                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 159, 64, 1)'],
-                        borderWidth: 1,
-                    },
-                ],
+            // Escucha la colección de empleados para contar los votos en tiempo real
+            onSnapshot(collection(db, 'employees'), (employeeSnapshot) => {
+                employeeSnapshot.forEach((doc) => {
+                    const vote = doc.data().vote;
+                    if (vote && results[vote] !== undefined) {
+                        results[vote] = (results[vote] || 0) + 1;
+                    }
+                });
+
+                // Formatea los datos para el gráfico
+                voteCounts = optionLabels.map(label => results[label]);
+
+                const colors = optionLabels.map(() => generateRandomColor());
+                const backgroundColors = colors.map(color => color + '33'); // Opacidad 0.2
+                const borderColors = colors.map(color => color); // Sin opacidad
+
+                setChartData({
+                    labels: optionLabels,
+                    datasets: [
+                        {
+                            label: 'Resultados de la votación',
+                            data: voteCounts,
+                            backgroundColor: backgroundColors, // Colores con opacidad
+                            borderColor: borderColors, // Colores sólidos
+                            borderWidth: 1,
+                        },
+                    ],
+                });
             });
         });
 
@@ -43,12 +67,16 @@ const VotingResults = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Resultados de la Votación</h2>
+        <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold text-gray-800 mb-5">Resultados de la Votación</h2>
             {Object.keys(chartData).length > 0 ? (
-                <Bar data={chartData} options={{ responsive: true }} />
+                <div className="relative">
+                <Bar data={chartData} 
+                     options={{ responsive: true }}
+                     className="max-w-3xl mx-auto" />
+                </div>
             ) : (
-                <p>Cargando resultados...</p>
+                <p className="text-gray-500">Cargando resultados...</p>
             )}
         </div>
     );

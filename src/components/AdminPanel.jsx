@@ -3,6 +3,7 @@ import { collection, addDoc, getDocs, updateDoc, doc } from "firebase/firestore"
 import { db } from '../firebase/firebaseConfig';
 import VotingResults from './VotingResults';
 import * as XLSX from 'xlsx';
+import VotingOptionsCreator from "./VotingOptionCreator";
 
 const AdminPanel = () => {
     const [loading, setLoading] = useState(false);
@@ -68,27 +69,34 @@ const AdminPanel = () => {
     };
 
     return (
-        <div>
-            <h2>Panel de Administrador</h2>
+        <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+            <h2 className="text-3xl font-bold mb-3 text-center">Panel de Administrador</h2>
 
-            <div>
-                <h3>Agregar empleados desde archivo Excel</h3>
+            <div className="bg-gray-100 p-5 rounded-lg shadow-md">
+                <h3 className="font-semibold">Carga de empleados Excel</h3>
                 <input
+                    className="block w-full text-sm my-4 bg-blue-500  text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-200 dark:border-gray-100 dark:placeholder-gray-400"
                     type="file"
                     accept=".xlsx, .xls"
                     onChange={handleFileUpload}
                     disabled={loading}
                 />
             </div>
+            <div className="bg-gray-100 p-5 my-3 rounded-lg shadow-md">
+                <h3 className="font-semibold text-lg mb-3">Participantes</h3>
+                <VotingOptionsCreator/>
+            </div>
 
             <div>
-                <h3>Resultado de la Votación</h3>
+                {/* <h3 className="font-semibold text-lg mb-3">Resultado de la Votación</h3> */}
                 <VotingResults />
             </div>
 
             <div>
-                <h3>Acciones de Votación</h3>
-                <button onClick={closeVoting} disabled={loading}>
+                <h3 className="font-semibold text-lg mb-3 p-5">Acciones de Votación</h3>
+                <button 
+                    className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                    onClick={closeVoting} disabled={loading}>
                     Reiniciar Votación
                 </button>
             </div>
