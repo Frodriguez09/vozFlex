@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAVS-7dnlbNw6e6-WRmAEOVj-1EOKOfo7M",
-    authDomain: "vozflex.firebaseapp.com",
-    projectId: "vozflex",
-    storageBucket: "vozflex.appspot.com",
-    messagingSenderId: "997277014934",
-    appId: "1:997277014934:web:3382832e5e77ddda479bb7"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
 };
 
 const app = initializeApp(firebaseConfig);
