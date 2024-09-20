@@ -29,11 +29,23 @@ const VotingScreen = ({employeeDoc}) =>{
                 hasVoted: true,
                 vote: selectedOption,
             });
-            alert('Voto registrado');
+            Swal.fire({
+                title: 'Voto registrado',
+                text: 'Gracias por participar',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#3b82f6'
+            })
             navigate('/');
             window.location.reload();
         }else{
-            alert('Selecciona una opcion');
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor selecciona un participante',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#3b82f6'
+            })
         }
         
     };
@@ -50,7 +62,7 @@ const VotingScreen = ({employeeDoc}) =>{
                     <h2 className="text-center font-bold text-lg">{option.name}</h2>
                     <div className="flex items-center">
                         <input
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
                         type="radio"
                         value={option.name}
                         checked={selectedOption === option.name}

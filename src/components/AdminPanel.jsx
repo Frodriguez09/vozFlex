@@ -12,7 +12,13 @@ const AdminPanel = () => {
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         if (!file) {
-            alert('Por favor, selecciona un archivo.');
+            Swal.fire({
+                title: 'Error',
+                text: 'Selecciona un archivo.',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#3b82f6'
+            });
             return;
         }
 
@@ -39,7 +45,13 @@ const AdminPanel = () => {
                         });
                     }
                 }
-                alert('Empleados agregados exitosamente.');
+                Swal.fire({
+                    title: 'Completado',
+                    text: 'Empleados cargados exitosamente.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#3b82f6'
+                })
             } catch (error) {
                 console.error('Error agregando empleados: ', error);
             } finally {
@@ -62,7 +74,13 @@ const AdminPanel = () => {
                 })
             );
             await Promise.all(updatePromises);
-            alert('Votación reiniciada.');
+            Swal.fire({
+                title: 'Completado',
+                text: 'Votacion reiniciada.',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#3b82f6'
+            })
         } catch (error) {
             console.error('Error al cerrar la votación: ', error);
         }
@@ -75,7 +93,7 @@ const AdminPanel = () => {
             <div className="bg-gray-100 p-5 rounded-lg shadow-md">
                 <h3 className="font-semibold">Carga de empleados Excel</h3>
                 <input
-                    className="block w-full text-sm my-4 bg-blue-500  text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-200 dark:border-gray-100 dark:placeholder-gray-400"
+                    className="block w-full text-sm my-4 bg-blue-500  text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none "
                     type="file"
                     accept=".xlsx, .xls"
                     onChange={handleFileUpload}

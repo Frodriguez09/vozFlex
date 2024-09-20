@@ -12,7 +12,13 @@ const AdminLogin = ({onLogin}) => {
             await signInWithEmailAndPassword(auth, email, password);
             onLogin();
         }catch (error) {
-            alert('Login fallido');
+            Swal.fire({
+                title: 'Error',
+                text: 'Login fallido',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#3b82f6'
+            })
         }
     };
 

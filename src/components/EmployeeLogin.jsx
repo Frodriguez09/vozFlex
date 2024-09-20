@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
+import Swal from 'sweetalert2';
 
 const EmployeeLogin = ({ onValidated}) => {
     const [employeeNumber, setEmployeeNumber] = useState('');
@@ -19,12 +20,24 @@ const EmployeeLogin = ({ onValidated}) => {
         if(!querySnapshot.empty){
             const employee = querySnapshot.docs[0];
             if(employee.data().hasVoted){
-                setErrorMessage('Ya has votado.');
+                setErrorMessage(Swal.fire({
+                    title: 'Error',
+                    text: 'Ya tienes un voto registrado.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#3b82f6'
+                }));
             }else{
                 onValidated(employee);
             }
         }else{
-            setErrorMessage('Numero de empleado no valido.');
+            setErrorMessage(Swal.fire({
+                title: 'Error',
+                text: 'Numero de empleado no valido.',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#3b82f6'
+            }));
         }
     };
 
@@ -46,7 +59,8 @@ const EmployeeLogin = ({ onValidated}) => {
                                 type="submit">Votar
                             </button>
                         </form>
-                        {errorMessage && <p className="text-center text-red-600 py-3 font-semibold ">{errorMessage}</p>}
+                        {/* {errorMessage && <p className="text-center text-red-600 py-3 font-semibold ">{errorMessage}</p>} */}
+                        {/* {errorMessage && {errorMessage}} */}
                     </div>
                 </div>
             </div>
