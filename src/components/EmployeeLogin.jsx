@@ -46,7 +46,7 @@ const EmployeeLogin = ({ onValidated}) => {
             <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
                 <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
                     <div className="px-5 py-7">
-                    <img className="mx-auto" src="https://flex.box.com/shared/static/2p4hyi0e5ixdk9eqaa5sr354zp7xn7kl.png" alt="La Voz Flex" width="250" />
+                    <img className="mx-auto" src="https://res.cloudinary.com/dskio3msp/image/upload/v1726859813/logo_VF_vuiyyv.png" alt="La Voz Flex" width="250" />
                         <form onSubmit={handleSubmit}>
                             <input
                                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"

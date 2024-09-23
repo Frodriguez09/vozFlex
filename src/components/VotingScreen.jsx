@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {updateDoc, doc, collection, getDocs} from 'firebase/firestore';
 import {db} from '../firebase/firebaseConfig';
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 
 const VotingScreen = ({employeeDoc}) =>{

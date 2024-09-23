@@ -4,6 +4,7 @@ import { db } from '../firebase/firebaseConfig';
 import VotingResults from './VotingResults';
 import * as XLSX from 'xlsx';
 import VotingOptionsCreator from "./VotingOptionCreator";
+import Swal from 'sweetalert2';
 
 const AdminPanel = () => {
     const [loading, setLoading] = useState(false);

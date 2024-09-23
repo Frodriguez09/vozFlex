@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { addDoc, collection, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { db } from '../firebase/firebaseConfig';
+import Swal from 'sweetalert2';
 
 const VotingOptionsCreator = () => {
   const [options, setOptions] = useState([]);
@@ -37,7 +38,13 @@ const VotingOptionsCreator = () => {
       try {
         await addDoc(collection(db, 'votingOptions'), newOption);
         setOptions([...options, { id: newOptionId, ...newOption }]);
-        alert('Opción de votación agregada');
+        Swal.fire({
+          title: 'Carga exitosa',
+          text: 'El participante fue agregado',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+          confirmButtonColor: '#3b82f6'
+      });
         setImageUrl('');
         setSingerName('');
       } catch (error) {
@@ -45,7 +52,13 @@ const VotingOptionsCreator = () => {
       }
       setLoading(false);
     } else {
-      alert('Por favor completa todos los campos.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor completa todos los campos',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#3b82f6'
+    })
     }
   };
 
@@ -71,7 +84,13 @@ const VotingOptionsCreator = () => {
       setEditingOption(null);
       setImageUrl('');
       setSingerName('');
-      alert('Opción actualizada');
+      Swal.fire({
+        title: 'Completo',
+        text: 'Opcion actualizada',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#3b82f6'
+    })
     } catch (error) {
       console.error('Error actualizando la opción de votación: ', error);
     }
@@ -82,7 +101,13 @@ const VotingOptionsCreator = () => {
     try {
       await deleteDoc(doc(db, 'votingOptions', optionId));
       setOptions(options.filter(option => option.id !== optionId));
-      alert('Opción eliminada');
+      Swal.fire({
+        title: 'Completo',
+        text: 'Opcion eliminada',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#3b82f6'
+    })
     } catch (error) {
       console.error('Error eliminando la opción de votación: ', error);
     }

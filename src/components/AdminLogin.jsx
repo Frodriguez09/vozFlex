@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from '../firebase/firebaseConfig';
+import Swal from 'sweetalert2';
 
 const AdminLogin = ({onLogin}) => {
     const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ const AdminLogin = ({onLogin}) => {
             <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
                 <div className="px-5 py-7">
                 <h2 className="text-center font-bold py-4">Administrador</h2>
-                <img className="mx-auto" src="https://flex.box.com/shared/static/2p4hyi0e5ixdk9eqaa5sr354zp7xn7kl.png" alt="La Voz Flex" width="200" />
+                <img className="mx-auto" src="https://res.cloudinary.com/dskio3msp/image/upload/v1726859813/logo_VF_vuiyyv.png" alt="La Voz Flex" width="200" />
                     <form onSubmit={handleSubmit}>
                         <input 
                             className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
