@@ -42,26 +42,24 @@ const EmployeeLogin = ({ onValidated}) => {
     };
 
     return(
-        <div className="min-h-screen bg-blue-400 flex flex-col justify-center sm:py-12">
-            <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-                <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
-                    <div className="px-5 py-7">
-                    <img className="mx-auto" src="https://res.cloudinary.com/dskio3msp/image/upload/v1726859813/logo_VF_vuiyyv.png" alt="La Voz Flex" width="250" />
+        <div className="flex flex-col w-4/5 md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto mt-10 p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
+            <div className="flex flex-row gap-3 pb-4">
+                <div className="bg-white w-full px-5 py-5">
+                    
+                    <img className="mx-auto mb-10" src="https://res.cloudinary.com/dskio3msp/image/upload/v1727733258/new_logoVozFlex_b6noq1.png" alt="La Voz Flex" width="250" />
+                    <label className="block mt-4 text-sm font-bold text[#111827]">Numero de empleado</label>
                         <form onSubmit={handleSubmit}>
                             <input
-                                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                                className="border rounded-lg px-3 py-4 mt-4 mb-6 text-sm w-full"
                                 type="text"
                                 value={employeeNumber}
                                 onChange={(e) => setEmployeeNumber(e.target.value)}
                                 placeholder="Ingresa tu numero de empleado"/>
                             <button 
-                                className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                                className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2 md:py-4 rounded-lg text-xl shadow-md hover:shadow-md font-semibold text-center inline-block"
                                 type="submit">Votar
                             </button>
                         </form>
-                        {/* {errorMessage && <p className="text-center text-red-600 py-3 font-semibold ">{errorMessage}</p>} */}
-                        {/* {errorMessage && {errorMessage}} */}
-                    </div>
                 </div>
             </div>
         </div>      

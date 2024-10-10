@@ -88,13 +88,16 @@ const AdminPanel = () => {
     };
 
     return (
-        <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-            <h2 className="text-3xl font-bold mb-3 text-center">Panel de Administrador</h2>
+        <div className="flex flex-col w-full md:w-2/3 xl:w-4/5 2xl:w-4/5 3xl:w-1/3 mx-auto mt-10 p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
+            <div className="flex flex-row gap-3 pb-4">
+                <img src="https://res.cloudinary.com/dskio3msp/image/upload/v1727733258/new_logoVozFlex_b6noq1.png" alt="logo flex" width="100" />
+                <h1 className="text-3xl font-bold text-[#4b5563] my-auto">Panel de Administrador</h1>
+            </div>
 
             <div className="bg-gray-100 p-5 rounded-lg shadow-md">
                 <h3 className="font-semibold">Carga de empleados Excel</h3>
                 <input
-                    className="block w-full text-sm my-4 bg-blue-500  text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none "
+                    className="block w-full text-sm my-4 bg-gray-100  text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none "
                     type="file"
                     accept=".xlsx, .xls"
                     onChange={handleFileUpload}
@@ -107,7 +110,6 @@ const AdminPanel = () => {
             </div>
 
             <div>
-                {/* <h3 className="font-semibold text-lg mb-3">Resultado de la Votación</h3> */}
                 <VotingResults />
             </div>
 

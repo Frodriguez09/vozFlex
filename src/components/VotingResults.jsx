@@ -68,16 +68,21 @@ const VotingResults = () => {
 
     return (
         <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-5">Resultados de la Votación</h2>
-            {Object.keys(chartData).length > 0 ? (
-                <div className="relative">
-                <Bar data={chartData} 
-                     options={{ responsive: true }}
-                     className="max-w-3xl mx-auto" />
-                </div>
-            ) : (
-                <p className="text-gray-500">Cargando resultados...</p>
-            )}
+            <div>
+                <h2 className="text-xl font-semibold text-gray-800 mb-5">Resultados de la Votación</h2>
+            </div>
+            <div className="w-4/5 md:w-full md:mx-auto">
+                {Object.keys(chartData).length > 0 ? (
+                    <div className="relative">
+                    <Bar data={chartData} 
+                        options={{ responsive: true
+                        }}
+                        className="" />
+                    </div>
+                ) : (
+                    <p className="text-gray-500">Cargando resultados...</p>
+                )}
+            </div>
         </div>
     );
 };

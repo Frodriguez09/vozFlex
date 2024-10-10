@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: #e2e8f0;
+  background-image: url("https://res.cloudinary.com/dskio3msp/image/upload/v1728598461/bg2_j71j36.webp");
+  object-fit: cover;
+}
+
 /* body{
   font-family: Arial, sans-serif;
   margin: 0;
