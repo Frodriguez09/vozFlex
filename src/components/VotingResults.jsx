@@ -23,11 +23,13 @@ const VotingResults = () => {
             let results = {};
             let optionLabels = [];
             let voteCounts = [];
+            let singers = [];
 
             // Recorre todas las opciones de votación y establece los contadores en 0
             snapshot.forEach((doc) => {
                 const option = doc.data();
                 optionLabels.push(option.name);
+                singers.push(option.singer);
                 results[option.name] = 0;
             });
 
@@ -48,7 +50,7 @@ const VotingResults = () => {
                 const borderColors = colors.map(color => color); // Sin opacidad
 
                 setChartData({
-                    labels: optionLabels,
+                    labels: singers,
                     datasets: [
                         {
                             label: 'Resultados de la votación',

@@ -21,8 +21,8 @@ const EmployeeLogin = ({ onValidated}) => {
             const employee = querySnapshot.docs[0];
             if(employee.data().hasVoted){
                 setErrorMessage(Swal.fire({
-                    title: 'Error',
-                    text: 'Ya tienes un voto registrado.',
+                    title: '¡Ya tienes un voto registrado!',
+                    text: 'Gracias por participar. Ya hemos recibido tu voto en esta elección. No es posible votar mas de una vez.',
                     icon: 'error',
                     confirmButtonText: 'Ok',
                     confirmButtonColor: '#3b82f6'
@@ -32,8 +32,8 @@ const EmployeeLogin = ({ onValidated}) => {
             }
         }else{
             setErrorMessage(Swal.fire({
-                title: 'Error',
-                text: 'Numero de empleado no valido.',
+                title: 'Numero de empleado invalido',
+                text: 'El numero que ingresaste es invalido',
                 icon: 'error',
                 confirmButtonText: 'Ok',
                 confirmButtonColor: '#3b82f6'

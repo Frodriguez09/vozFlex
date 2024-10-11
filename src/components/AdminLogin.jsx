@@ -14,8 +14,8 @@ const AdminLogin = ({onLogin}) => {
             onLogin();
         }catch (error) {
             Swal.fire({
-                title: 'Error',
-                text: 'Login fallido',
+                title: '¡Algo salio mal!',
+                text: 'Las credenciales son incorectas',
                 icon: 'error',
                 confirmButtonText: 'Ok',
                 confirmButtonColor: '#3b82f6'

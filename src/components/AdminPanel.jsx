@@ -76,7 +76,7 @@ const AdminPanel = () => {
             );
             await Promise.all(updatePromises);
             Swal.fire({
-                title: 'Completado',
+                title: 'Accion realizada',
                 text: 'Votacion reiniciada.',
                 icon: 'success',
                 confirmButtonText: 'Ok',

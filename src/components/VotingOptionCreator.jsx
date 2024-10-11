@@ -53,7 +53,7 @@ const VotingOptionsCreator = () => {
       setLoading(false);
     } else {
       Swal.fire({
-        title: 'Error',
+        title: '¡Ocurrio un error!',
         text: 'Por favor completa todos los campos',
         icon: 'error',
         confirmButtonText: 'Ok',
@@ -102,8 +102,8 @@ const VotingOptionsCreator = () => {
       await deleteDoc(doc(db, 'votingOptions', optionId));
       setOptions(options.filter(option => option.id !== optionId));
       Swal.fire({
-        title: 'Completo',
-        text: 'Opcion eliminada',
+        title: 'Participante Eliminado',
+        text: 'Se a borrado al participante',
         icon: 'error',
         confirmButtonText: 'Ok',
         confirmButtonColor: '#3b82f6'
